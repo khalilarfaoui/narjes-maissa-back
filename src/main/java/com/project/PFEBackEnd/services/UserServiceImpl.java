@@ -57,6 +57,11 @@ public class UserServiceImpl implements IUserService, UserDetailsService {
     }
 
     @Override
+    public Optional<Utilisateur> findByUserName(String username) {
+        return userRepository.findByUserName(username);
+    }
+
+    @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         Optional<Utilisateur> userInfo = userRepository.findByUserName(username);
         return userInfo.map(UserInfoDetails::new)
